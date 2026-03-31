@@ -1,1 +1,2 @@
-﻿C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\Microsoft.VCToolsVersion.v145.default.props(32,5): error MSB4019: The imported project "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\v145\Microsoft.VCToolsVersion.VC.14.50.18.0.props" was not found. Confirm that the expression in the Import declaration "$(VCToolsVersionPath)", which evaluated to "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\v145\Microsoft.VCToolsVersion.VC.14.50.18.0.props", is correct, and that the file exists on disk.
+﻿  Source.cpp
+  Restaurant-App.vcxproj -> C:\Users\محمود\source\repos\Restaurant-App\x64\Debug\Restaurant-App.exe
