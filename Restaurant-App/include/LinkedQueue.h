@@ -1,5 +1,6 @@
 
 /*
+* comment test 
 This is a program that implements the queue abstract data type using a linked list.
 The queue is implemented as a chain of linked nodes that has two pointers, 
 a frontPtr pointer for the front of the queue and a backPtr pointer for the back of the queue.
@@ -9,7 +10,7 @@ a frontPtr pointer for the front of the queue and a backPtr pointer for the back
 
 				The Node: item of type T and a "next" pointer
 					------------- 
-					| item| next | --->
+					| item| next | ---> 
 					-------------
 General Queue case:
 
