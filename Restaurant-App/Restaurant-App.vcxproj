@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Chef.h" />
     <ClInclude Include="include\ArrayStack.h" />
     <ClInclude Include="include\LinkedList.h" />
     <ClInclude Include="include\LinkedQueue.h" />
@@ -135,6 +136,12 @@
     <ClInclude Include="include\priQueue.h" />
     <ClInclude Include="include\QueueADT.h" />
     <ClInclude Include="include\StackADT.h" />
+    <ClInclude Include="Order.h" />
+    <ClInclude Include="Scooter.h" />
+    <ClInclude Include="Table.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
