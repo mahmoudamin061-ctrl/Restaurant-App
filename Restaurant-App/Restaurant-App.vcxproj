@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="CancelAction.h" />
     <ClInclude Include="Chef.h" />
     <ClInclude Include="include\ArrayStack.h" />
     <ClInclude Include="include\LinkedList.h" />
@@ -137,10 +139,15 @@
     <ClInclude Include="include\QueueADT.h" />
     <ClInclude Include="include\StackADT.h" />
     <ClInclude Include="Order.h" />
+    <ClInclude Include="RequestAction.h" />
+    <ClInclude Include="Restaurant.h" />
     <ClInclude Include="Scooter.h" />
     <ClInclude Include="Table.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CancelAction.cpp" />
+    <ClCompile Include="RequestAction.cpp" />
+    <ClCompile Include="Restaurant.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
