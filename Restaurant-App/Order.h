@@ -24,6 +24,7 @@ public:
     Order(int id, ORD_TYPE t, int AT) : ID(id), type(t), ArrivalTime(AT), size(0), price(0.0), distance(0) {}
 
     int getID() const { return ID; }
+    ORD_TYPE getType() const { return type; }
     int getArrivalTime() const { return ArrivalTime; }
     int getSize() const { return size; }
     double getPrice() const { return price; }

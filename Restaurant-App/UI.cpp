@@ -1,6 +1,6 @@
 #include "UI.h"
 #include "Restaurant.h"
-#include "UI_PrintHelpers.h"
+#include "UI_Helpers.h"
 
 UI::UI(UI_MODE UI_mode)
 {
@@ -10,7 +10,11 @@ UI::UI(UI_MODE UI_mode)
 void UI::SelectMode()
 {
     cout << "Select Mode:\n1. Interactive\n2. Silent\n";
-    cin >> mode;
+
+    int choice;
+    cin >> choice;
+
+    mode = (choice == 1) ? MODE_INTR : MODE_SILENT;
 }
 
 int UI::GetMode() const

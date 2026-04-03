@@ -17,7 +17,7 @@ void PrintActions(Restaurant* R)
     cout << total << " actions remaining: ";
 
     // print ONLY first 10 actions
-    actions.printFirstN(10);
+    //ctions.printFirstN(10);
 
     cout << endl;
 }
