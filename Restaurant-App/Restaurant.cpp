@@ -1,6 +1,7 @@
 #include "Restaurant.h"
 #include "Action.h"
 #include "UI.h"
+#include <cstdlib>
 
 // ===================== Constructor =====================
 Restaurant::Restaurant()
@@ -15,6 +16,27 @@ void Restaurant::AddAction(Action* pAct)
         ACTIONS_LIST.enqueue(pAct);
 }
 
+// ===================== RANDOM ORDER =====================
+
+void Restaurant::GenerateRandomOrder(int currentTime, int& lastID) {
+
+    int probability = rand() % 100;
+
+    if (probability < 30) {
+        lastID++;
+
+        int typeRandom = rand() % 3;
+        ORD_TYPE randomType;
+
+        if (typeRandom == 0) randomType = TYPE_NRM;
+        else if (typeRandom == 1) randomType = TYPE_VGAN;
+        else randomType = TYPE_VIP;
+
+        Order* newOrder = new Order(lastID, randomType, currentTime);
+        AddOrder(newOrder);
+    }
+}
+
 // ===================== Add Order =====================
 void Restaurant::AddOrder(Order* pOrd)
 {
@@ -22,12 +44,12 @@ void Restaurant::AddOrder(Order* pOrd)
 
     switch (pOrd->getType())
     {
-    case TYPE_ODG: PEND_ODG.enqueue(pOrd); break;
-    case TYPE_ODN: PEND_ODN.enqueue(pOrd); break;
-    case TYPE_OT:  PEND_OT.enqueue(pOrd); break;
-    case TYPE_OVN: PEND_OVN.enqueue(pOrd); break;
-    case TYPE_OVC: PEND_OVC.enqueue(pOrd); break;
-    case TYPE_OVG: PEND_OVG.enqueue(pOrd, 10); break;
+    case TYPE_NRM:  PEND_ODN.enqueue(pOrd); break;
+    case TYPE_VGAN: PEND_ODG.enqueue(pOrd); break;
+    case TYPE_VIP:  PEND_OVG.enqueue(pOrd, 10); break; 
+    case TYPE_OT:   PEND_OT.enqueue(pOrd); break;
+    case TYPE_OVN:  PEND_OVN.enqueue(pOrd); break;
+    case TYPE_OVC:  PEND_OVC.enqueue(pOrd); break;
     default: break;
     }
 }
@@ -56,7 +78,8 @@ bool Restaurant::RemoveOrder(int id)
     LinkedQueue<Order*> helper;
     bool found = false;
 
-    while (PEND_OVC.dequeue(temp))
+
+    while (PEND_ODN.dequeue(temp))
     {
         if (temp->getID() == id && !found)
         {
@@ -70,7 +93,7 @@ bool Restaurant::RemoveOrder(int id)
     }
 
     while (helper.dequeue(temp))
-        PEND_OVC.enqueue(temp);
+        PEND_ODN.enqueue(temp);
 
     return found;
 }
@@ -104,9 +127,13 @@ void Restaurant::RunSimulation(UI* ui)
             FINISHED.enqueue(ord);
 
         // ===== UI =====
-        ui->PrintAll(this);
+
+        ui->PrintAll(this, currentTimeStep);
 
         currentTimeStep++;
+
+
+
 
         // Stop condition (Phase 1.2)
         if (ACTIONS_LIST.isEmpty() &&
@@ -132,7 +159,6 @@ LinkedQueue<Action*>& Restaurant::GetActions()
     return ACTIONS_LIST;
 }
 
-// ?? TEMP: return only one pending queue (Phase 1.2)
 LinkedQueue<Order*>& Restaurant::GetPending()
 {
     return PEND_ODN;

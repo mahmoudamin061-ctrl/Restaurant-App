@@ -50,6 +50,10 @@ public:
     bool RemoveOrder(int id);
     void ExecuteEvents(int currentTime);
 
+    // ===================== RANDOM ORDER =====================
+
+    void GenerateRandomOrder(int currentTime, int& lastID);
+
     // ===================== SIMULATION =====================
     void RunSimulation(UI* ui);
 

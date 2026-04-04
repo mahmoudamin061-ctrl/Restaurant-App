@@ -1,6 +1,7 @@
 #include "UI.h"
 #include "Restaurant.h"
 #include "UI_Helpers.h"
+#include "Order.h" 
 
 UI::UI(UI_MODE UI_mode)
 {
@@ -34,11 +35,12 @@ void UI::Wait()
     cin.get();
 }
 
-void UI::PrintAll(Restaurant* R)
+void UI::PrintAll(Restaurant* R, int currentTimeStep)
 {
-    if (mode == 2) return;
+    if (mode == 2) return; 
 
-    PrintHeader(R->GetTimeStep());
+
+    PrintHeader(currentTimeStep);
 
     PrintActions(R);
     PrintPending(R);
@@ -52,4 +54,22 @@ void UI::PrintAll(Restaurant* R)
     PrintFinished(R);
 
     Wait();
+}
+
+
+void UI::PrintOrderFormat(Order* pOrd) {
+    if (!pOrd) return;
+
+
+    if (pOrd->getType() == TYPE_NRM) {
+        cout << "[" << pOrd->getID() << "] ";
+    }
+
+    else if (pOrd->getType() == TYPE_VGAN) {
+        cout << "(" << pOrd->getID() << ") ";
+    }
+
+    else if (pOrd->getType() == TYPE_VIP) {
+        cout << "{" << pOrd->getID() << "} ";
+    }
 }

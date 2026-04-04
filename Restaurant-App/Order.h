@@ -2,7 +2,7 @@
 #include <iostream>
 
 // أنواع الأوردرات المتاحة في المطعم
-enum ORD_TYPE { TYPE_NRM, TYPE_VGAN, TYPE_VIP, TYPE_ODG, TYPE_ODN,TYPE_OT, TYPE_OVG,TYPE_OVC,TYPE_OVN};
+enum ORD_TYPE { TYPE_NRM, TYPE_VGAN, TYPE_VIP, TYPE_ODG, TYPE_ODN, TYPE_OT, TYPE_OVG, TYPE_OVC, TYPE_OVN };
 //TYPE_ODG-->Dine-in Grilled
 //TYPE_ODN-->Dine-in Normal
 //TYPE_OT--> Takeaway
@@ -30,9 +30,26 @@ public:
     double getPrice() const { return price; }
     int getDistance() const { return distance; }
 
-    
+    // 👇 التعديل السحري هنا: دالة الطباعة دي هتحط الأقواس أوتوماتيك 👇
     friend std::ostream& operator<<(std::ostream& os, const Order* ord) {
-        if (ord) os << ord->ID;
+        if (ord) {
+            // لو الأوردر Normal 
+            if (ord->type == TYPE_NRM || ord->type == TYPE_ODN || ord->type == TYPE_OVN) {
+                os << "[" << ord->ID << "]";
+            }
+            // لو الأوردر Vegan
+            else if (ord->type == TYPE_VGAN) {
+                os << "(" << ord->ID << ")";
+            }
+            // لو الأوردر VIP أو الأنواع التانية اللي محتاجة أقواس
+            else if (ord->type == TYPE_VIP || ord->type == TYPE_OVG || ord->type == TYPE_OVC || ord->type == TYPE_ODG) {
+                os << "{" << ord->ID << "}";
+            }
+            // لو أي نوع تاني مش معروف
+            else {
+                os << ord->ID;
+            }
+        }
         return os;
     }
 };
