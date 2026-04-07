@@ -49,7 +49,7 @@ public:
     void AddOrder(Order* pOrd);
     bool RemoveOrder(int id);
     void ExecuteEvents(int currentTime);
-
+    void RandomSimulation(UI* ui);
     // ===================== RANDOM ORDER =====================
 
     void GenerateRandomOrder(int currentTime, int& lastID);
@@ -63,6 +63,12 @@ public:
     LinkedQueue<Action*>& GetActions();
 
     LinkedQueue<Order*>& GetPending();
+        LinkedQueue<Order*>& GetPendingVegan();
+        priQueue<Order*>& GetPendingVIP();
+        LinkedQueue<Order*>& GetPendingOT();
+        LinkedQueue<Order*>& GetPendingOVN();
+        LinkedQueue<Order*>& GetPendingOVC();
+    
     LinkedQueue<Order*>& GetCooking();
     LinkedQueue<Order*>& GetReady();
     LinkedQueue<Order*>& GetInService();

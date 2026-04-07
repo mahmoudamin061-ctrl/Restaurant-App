@@ -12,8 +12,13 @@ private:
 
 public:
     // الـ Constructor
+    Scooter() {
+        ID = 0;
+        speed = 1;
+        status = IDLE; // أو على حسب اسم الـ Enum عندكم
+    }
     Scooter(int id, int s) : ID(id), speed(s), status(IDLE) {}
-
+   
     // دالة بترجع الـ ID
     int getID() const { return ID; }
 
