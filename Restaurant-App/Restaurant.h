@@ -12,13 +12,10 @@ class UI;
 
 class Restaurant {
 private:
-    // ===================== TIME =====================
     int currentTimeStep;
 
-    // ===================== ACTIONS =====================
     LinkedQueue<Action*> ACTIONS_LIST;
 
-    // ===================== PENDING =====================
     LinkedQueue<Order*> PEND_ODN;
     LinkedQueue<Order*> PEND_ODG;
     LinkedQueue<Order*> PEND_OT;
@@ -26,14 +23,12 @@ private:
     LinkedQueue<Order*> PEND_OVC;
     priQueue<Order*>    PEND_OVG;
 
-    // ===================== STATES =====================
     LinkedQueue<Order*> COOKING;
     LinkedQueue<Order*> READY;
     LinkedQueue<Order*> INSERVICE;
     LinkedQueue<Order*> FINISHED;
     LinkedQueue<Order*> CANCELLED;
 
-    // ===================== RESOURCES =====================
     LinkedQueue<Chef*> availableChefs;
     LinkedQueue<Scooter*> availableScooters;
     LinkedQueue<Scooter*> maintenanceScooters;
@@ -41,23 +36,18 @@ private:
     LinkedQueue<Table*> availableTables;
 
 public:
-    // ===================== CONSTRUCTOR =====================
     Restaurant();
 
-    // ===================== ACTIONS =====================
     void AddAction(Action* pAct);
     void AddOrder(Order* pOrd);
     bool RemoveOrder(int id);
     void ExecuteEvents(int currentTime);
     void RandomSimulation(UI* ui);
-    // ===================== RANDOM ORDER =====================
 
     void GenerateRandomOrder(int currentTime, int& lastID);
 
-    // ===================== SIMULATION =====================
     void RunSimulation(UI* ui);
 
-    // ===================== GETTERS (FOR UI) =====================
     int GetTimeStep() const;
 
     LinkedQueue<Action*>& GetActions();
@@ -82,6 +72,5 @@ public:
 
     LinkedQueue<Table*>& GetAvailableTables();
 
-    // ===================== DESTRUCTOR =====================
     ~Restaurant();
 };

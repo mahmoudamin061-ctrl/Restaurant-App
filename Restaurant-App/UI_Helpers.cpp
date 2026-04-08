@@ -4,7 +4,6 @@ using namespace std;
 #include "UI_Helpers.h"
 #include "Restaurant.h"
 
-// ===================== ACTIONS =====================
 void PrintActions(Restaurant* R)
 {
     cout << "--------------- Actions List ================" << endl;
@@ -16,13 +15,10 @@ void PrintActions(Restaurant* R)
 
     cout << total << " actions remaining: ";
 
-    // print ONLY first 10 actions
-    //ctions.printFirstN(10);
 
     cout << endl;
 }
 
-// ===================== PENDING =====================
 void PrintPending(Restaurant* R)
 {
     cout << "------------- Pending Orders -----------------" << endl;
@@ -36,7 +32,6 @@ void PrintPending(Restaurant* R)
     cout << endl;
 }
 
-// ===================== AVAILABLE CHEFS =====================
 void PrintAvailableChefs(Restaurant* R)
 {
     cout << "------------- Available Chefs -----------------" << endl;
@@ -50,7 +45,6 @@ void PrintAvailableChefs(Restaurant* R)
     cout << endl;
 }
 
-// ===================== COOKING =====================
 void PrintCooking(Restaurant* R)
 {
     cout << "------------- Cooking Orders -----------------" << endl;
@@ -65,7 +59,6 @@ void PrintCooking(Restaurant* R)
     cout << endl;
 }
 
-// ===================== READY =====================
 void PrintReady(Restaurant* R)
 {
     cout << "------------- Ready Orders -----------------" << endl;
@@ -79,7 +72,6 @@ void PrintReady(Restaurant* R)
     cout << endl;
 }
 
-// ===================== SCOOTERS =====================
 void PrintScooters(Restaurant* R)
 {
     cout << "------------- Available Scooters -----------------" << endl;
@@ -93,7 +85,6 @@ void PrintScooters(Restaurant* R)
     cout << endl;
 }
 
-// ===================== TABLES =====================
 void PrintTables(Restaurant* R)
 {
     cout << "------------- Available Tables -----------------" << endl;
@@ -102,13 +93,11 @@ void PrintTables(Restaurant* R)
 
     cout << tables.getCount() << " Tables: ";
 
-    // Expected format: [TableID, Capacity, FreeSeats]
     tables.print();
 
     cout << endl;
 }
 
-// ===================== IN SERVICE =====================
 void PrintInService(Restaurant* R)
 {
     cout << "------------- In-Service Orders -----------------" << endl;
@@ -117,13 +106,11 @@ void PrintInService(Restaurant* R)
 
     cout << inService.getCount() << " Orders: ";
 
-    // Expected: [OrderID, ScooterID/TableID]
     inService.print();
 
     cout << endl;
 }
 
-// ===================== MAINTENANCE =====================
 void PrintMaintenance(Restaurant* R)
 {
     cout << "------------- In-Maintenance Scooters -----------------" << endl;
@@ -147,7 +134,6 @@ void PrintMaintenance(Restaurant* R)
     cout << endl;
 }
 
-// ===================== FINISHED =====================
 void PrintFinished(Restaurant* R)
 {
     cout << "------------- Finished Orders -----------------" << endl;
@@ -156,7 +142,6 @@ void PrintFinished(Restaurant* R)
 
     cout << finished.getCount() << " Orders: ";
 
-    // MUST be sorted descending by finish time (handled by Restaurant)
     finished.print();
 
     cout << endl;

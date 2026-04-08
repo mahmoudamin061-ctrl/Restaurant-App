@@ -2,12 +2,10 @@
 #include "Action.h"
 #include "UI.h"
 #include <cstdlib>
-#include <iostream> // ضفناها عشان نطبع سجل الأحداث (Actions)
+#include <iostream> 
 
 using namespace std;
 
-// ===================== Helper Function for Cancellation =====================
-// دالة مساعدة عشان نمسح الأوردرات من نص الطابور بأمان من غير ما الميموري تضرب
 bool CancelFromQueue(LinkedQueue<Order*>& q, int targetID, LinkedQueue<Order*>& cancelledList) {
     LinkedQueue<Order*> tempQ;
     Order* temp;
@@ -28,20 +26,20 @@ bool CancelFromQueue(LinkedQueue<Order*>& q, int targetID, LinkedQueue<Order*>& 
     return found;
 }
 
-// ===================== Constructor =====================
+
 Restaurant::Restaurant()
 {
     currentTimeStep = 0;
 }
 
-// ===================== Add Action =====================
+
 void Restaurant::AddAction(Action* pAct)
 {
     if (pAct)
         ACTIONS_LIST.enqueue(pAct);
 }
 
-// ===================== RANDOM ORDER =====================
+
 
 void Restaurant::GenerateRandomOrder(int currentTime, int& lastID) {
 
@@ -62,7 +60,6 @@ void Restaurant::GenerateRandomOrder(int currentTime, int& lastID) {
     }
 }
 
-// ===================== Add Order =====================
 void Restaurant::AddOrder(Order* pOrd)
 {
     if (!pOrd) return;
@@ -71,7 +68,6 @@ void Restaurant::AddOrder(Order* pOrd)
     {
     case TYPE_NRM:  PEND_ODN.enqueue(pOrd); break;
     case TYPE_VGAN: PEND_ODG.enqueue(pOrd); break;
-        // ✅ 1. تم تعديل الأولوية لتكون عشوائية بدلاً من 10 الثابتة
     case TYPE_VIP:  PEND_OVG.enqueue(pOrd, rand() % 100 + 1); break;
     case TYPE_OT:   PEND_OT.enqueue(pOrd); break;
     case TYPE_OVN:  PEND_OVN.enqueue(pOrd); break;
@@ -80,7 +76,6 @@ void Restaurant::AddOrder(Order* pOrd)
     }
 }
 
-// ===================== Execute Events =====================
 void Restaurant::ExecuteEvents(int currentTime)
 {
     Action* pAct = nullptr;
@@ -97,7 +92,6 @@ void Restaurant::ExecuteEvents(int currentTime)
     }
 }
 
-// ===================== Remove Order =====================
 bool Restaurant::RemoveOrder(int id)
 {
     Order* temp = nullptr;
@@ -123,7 +117,6 @@ bool Restaurant::RemoveOrder(int id)
     return found;
 }
 
-// ===================== SIMULATION =====================
 void Restaurant::RunSimulation(UI* ui)
 {
     ui->SelectMode();
@@ -132,30 +125,23 @@ void Restaurant::RunSimulation(UI* ui)
     {
         ExecuteEvents(currentTimeStep);
 
-        // ===== Phase 1.2 Dummy Movement =====
         Order* ord;
 
-        // Pending -> Cooking
         if (PEND_ODN.dequeue(ord))
             COOKING.enqueue(ord);
 
-        // Cooking -> Ready
         else if (COOKING.dequeue(ord))
             READY.enqueue(ord);
 
-        // Ready -> InService
         else if (READY.dequeue(ord))
             INSERVICE.enqueue(ord);
 
-        // InService -> Finished
         else if (INSERVICE.dequeue(ord))
             FINISHED.enqueue(ord);
 
-        // ===== UI =====
         ui->PrintAll(this, currentTimeStep);
         currentTimeStep++;
 
-        // Stop condition (Phase 1.2)
         if (ACTIONS_LIST.isEmpty() &&
             PEND_ODN.isEmpty() &&
             COOKING.isEmpty() &&
@@ -167,7 +153,6 @@ void Restaurant::RunSimulation(UI* ui)
     }
 }
 
-// ===================== GETTERS =====================
 
 int Restaurant::GetTimeStep() const
 {
@@ -227,7 +212,6 @@ LinkedQueue<Order*>& Restaurant::GetFinished()
     return FINISHED;
 }
 
-// ===================== RESOURCES =====================
 LinkedQueue<Chef*>& Restaurant::GetAvailableChefs()
 {
     return availableChefs;
@@ -253,15 +237,14 @@ LinkedQueue<Table*>& Restaurant::GetAvailableTables()
     return availableTables;
 }
 
-// ===================== RANDOM SIMULATION (PHASE 1) =====================
 void Restaurant::RandomSimulation(UI* ui)
 {
-    ui->SelectMode(); // Step: Interactive or Silent
+    ui->SelectMode(); 
 
-    // 1. & 2. Initializations & Generate 500 random pending orders
+   
     srand((unsigned int)time(0));
 
-    // Add dummy resources just so the simulation doesn't get stuck at 0
+    
     for (int i = 1; i <= 100; i++) availableChefs.enqueue(new Chef(i, CHEF_NRM, 5));
     for (int i = 1; i <= 15; i++) availableScooters.enqueue(new Scooter(i, 10));
     for (int i = 1; i <= 15; i++) availableTables.enqueue(new Table(i, 5));
@@ -280,17 +263,15 @@ void Restaurant::RandomSimulation(UI* ui)
         AddOrder(newOrder);
     }
 
-    // 3. At each time step
+    
     while (true)
     {
         currentTimeStep++;
 
-        // طباعة سجل الأحداث عشان المعيد يكون مبسوط
         if (ui->GetMode() != MODE_SILENT) {
             cout << "\n--- Step " << currentTimeStep << " Actions Log ---\n";
         }
 
-        // 3.1 Repeat 30 times (Pending -> Cooking)
         for (int i = 0; i < 30; i++) {
             Order* ord = nullptr;
             Chef* chef = nullptr;
@@ -314,17 +295,16 @@ void Restaurant::RandomSimulation(UI* ui)
                     if (ui->GetMode() != MODE_SILENT)
                         cout << "Action: Order " << ord->getID() << " moved to Cooking.\n";
 
-                    // ✅ 2. مسحنا مؤشر الشيف عشان نتجنب الـ Memory Leak
                     delete chef;
                 }
                 else {
-                    AddOrder(ord); // No chef, put it back
+                    AddOrder(ord); 
                     break;
                 }
             }
         }
 
-        // 3.2 With 75% prob, pick from Cooking to Ready (Repeat 15 times)
+       
         if ((rand() % 100) < 75) {
             for (int i = 0; i < 15; i++) {
                 Order* ord = nullptr;
@@ -339,13 +319,12 @@ void Restaurant::RandomSimulation(UI* ui)
             }
         }
 
-        // 3.3 Repeat 10 times (Ready -> In-service or Finish)
         for (int i = 0; i < 10; i++) {
             Order* ord = nullptr;
             if (READY.dequeue(ord)) {
                 ORD_TYPE t = ord->getType();
                 if (t == TYPE_OT) {
-                    FINISHED.enqueue(ord); // OT moves to finish
+                    FINISHED.enqueue(ord); 
                 }
                 else if (t == TYPE_OVN || t == TYPE_OVC || t == TYPE_VIP) {
                     Scooter* s = nullptr;
@@ -354,7 +333,7 @@ void Restaurant::RandomSimulation(UI* ui)
                         if (ui->GetMode() != MODE_SILENT)
                             cout << "Action: Order " << ord->getID() << " assigned to Scooter " << s->getID() << ".\n";
 
-                        // ✅ 2. مسحنا مؤشر السكوتر عشان الميموري
+                       
                         delete s;
                     }
                     else {
@@ -369,7 +348,7 @@ void Restaurant::RandomSimulation(UI* ui)
                         if (ui->GetMode() != MODE_SILENT)
                             cout << "Action: Order " << ord->getID() << " assigned to Table " << tb->getID() << ".\n";
 
-                        // ✅ 2. مسحنا مؤشر الترابيزة عشان الميموري
+                        
                         delete tb;
                     }
                     else {
@@ -383,7 +362,7 @@ void Restaurant::RandomSimulation(UI* ui)
             }
         }
 
-        // 3.4 & 3.5 & 3.6 Cancellation Logic (تم إضافة الإلغاء)
+      
         int randomCancelID = rand() % 500 + 1;
         if (CancelFromQueue(PEND_OVC, randomCancelID, CANCELLED)) {
             if (ui->GetMode() != MODE_SILENT) cout << "Action: Order " << randomCancelID << " Cancelled from PEND_OVC.\n";
@@ -394,37 +373,33 @@ void Restaurant::RandomSimulation(UI* ui)
             if (ui->GetMode() != MODE_SILENT) cout << "Action: Order " << randomCancelID << " Cancelled from Ready.\n";
         }
 
-        // 3.7 In-Service -> Finished
-        if ((rand() % 100) < 60) { // الاحتمال زاد عشان الموارد ترجع
+       
+        if ((rand() % 100) < 60) { 
             Order* ord = nullptr;
             if (INSERVICE.dequeue(ord)) {
                 FINISHED.enqueue(ord);
                 if (ui->GetMode() != MODE_SILENT) cout << "Action: Order " << ord->getID() << " Delivered!\n";
 
-                // ✅ 3. رجعنا شيف للمطعم عشان الشيفات ميخلصوش (Bug Fix)
                 availableChefs.enqueue(new Chef(rand() % 100 + 1, CHEF_NRM, 5));
 
                 ORD_TYPE t = ord->getType();
                 if (t == TYPE_OVN || t == TYPE_OVC || t == TYPE_VIP) {
-                    returningScooters.enqueue(new Scooter(rand() % 15 + 1, 10)); // تم منع الصفر
+                    returningScooters.enqueue(new Scooter(rand() % 15 + 1, 10)); 
                 }
                 else if (t != TYPE_OT) {
-                    availableTables.enqueue(new Table(rand() % 15 + 1, 5)); // تم منع الصفر
+                    availableTables.enqueue(new Table(rand() % 15 + 1, 5)); 
                 }
             }
         }
 
-        // ✅ التبديلة هنا: 3.9 بقت قبل 3.8 عشان القديم يخرج الأول
-        // 3.9 Maintenance scooter -> available
-        if ((rand() % 100) < 80) { // الاحتمال زاد
+        if ((rand() % 100) < 80) {  
             Scooter* s = nullptr;
             if (maintenanceScooters.dequeue(s)) {
                 availableScooters.enqueue(s);
             }
         }
 
-        // 3.8 Returning scooter -> available or maintenance
-        if ((rand() % 100) < 80) { // الاحتمال زاد عشان السكوترز متخلصش
+        if ((rand() % 100) < 80) { 
             Scooter* s = nullptr;
             if (returningScooters.dequeue(s)) {
                 if (rand() % 2 == 0) {
@@ -432,16 +407,13 @@ void Restaurant::RandomSimulation(UI* ui)
                 }
                 else {
                     maintenanceScooters.enqueue(s);
-                    // رسالة اختيارية عشان الدكتور يتأكد إنها شغالة
-                    // if (ui->GetMode() != MODE_SILENT) cout << "Action: Scooter " << s->getID() << " went to Maintenance.\n";
                 }
             }
         }
 
-        // 3.10 Print info
         ui->PrintAll(this, currentTimeStep);
 
-        // 4. End the simulation
+       
         bool allActiveEmpty = PEND_ODN.isEmpty() && PEND_ODG.isEmpty() && PEND_OVG.isEmpty() &&
             PEND_OT.isEmpty() && PEND_OVN.isEmpty() && PEND_OVC.isEmpty() &&
             COOKING.isEmpty() && READY.isEmpty() && INSERVICE.isEmpty();
@@ -451,5 +423,4 @@ void Restaurant::RandomSimulation(UI* ui)
         }
     }
 }
-// ===================== Destructor =====================
 Restaurant::~Restaurant() {}

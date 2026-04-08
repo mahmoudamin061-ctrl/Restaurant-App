@@ -3,7 +3,7 @@
 
 #include "Action.h"
 
-class Restaurant;   // forward declaration
+class Restaurant;  
 
 class CancelAction : public Action {
 private:
