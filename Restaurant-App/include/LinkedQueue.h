@@ -140,14 +140,14 @@ LinkedQueue<T>::~LinkedQueue()
 {
 	//Note that the cout statements here is just for learning purpose
 	//They should be normally removed from the destructor
-	std::cout << "\nStarting LinkedQueue destructor...";
-	std::cout << "\nFreeing all nodes in the queue...";
+	//std::cout << "\nStarting LinkedQueue destructor...";
+	//std::cout << "\nFreeing all nodes in the queue...";
 
 	//Free all nodes in the queue
 	T temp;
 	while (dequeue(temp));
 
-	std::cout << "\n Is LinkedQueue Empty now?? ==> " << std::boolalpha << isEmpty();
-	std::cout << "\nEnding LinkedQueue destructor..." << std::endl;
+	//std::cout << "\n Is LinkedQueue Empty now?? ==> " << std::boolalpha << isEmpty();
+	//std::cout << "\nEnding LinkedQueue destructor..." << std::endl;
 }
 #endif

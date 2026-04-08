@@ -1,18 +1,24 @@
-#ifndef RESTAURANT_H_
-#define RESTAURANT_H_
+#pragma once
 
 #include "include/LinkedQueue.h"
 #include "include/priQueue.h"
-#include "include/LinkedList.h"
 #include "Order.h"
 #include "Chef.h"
+#include "Scooter.h"
+#include "Table.h"
 
 class Action;
+class UI;
 
 class Restaurant {
 private:
+    // ===================== TIME =====================
+    int currentTimeStep;
+
+    // ===================== ACTIONS =====================
     LinkedQueue<Action*> ACTIONS_LIST;
 
+    // ===================== PENDING =====================
     LinkedQueue<Order*> PEND_ODN;
     LinkedQueue<Order*> PEND_ODG;
     LinkedQueue<Order*> PEND_OT;
@@ -20,29 +26,62 @@ private:
     LinkedQueue<Order*> PEND_OVC;
     priQueue<Order*>    PEND_OVG;
 
-    LinkedQueue<Chef*> Free_CN;
-    LinkedQueue<Chef*> Free_CS;
+    // ===================== STATES =====================
+    LinkedQueue<Order*> COOKING;
+    LinkedQueue<Order*> READY;
+    LinkedQueue<Order*> INSERVICE;
+    LinkedQueue<Order*> FINISHED;
+    LinkedQueue<Order*> CANCELLED;
 
-    LinkedQueue<Order*> RDY_OD;
-    LinkedQueue<Order*> RDY_OT;
-    LinkedQueue<Order*> RDY_OV;
-
-    LinkedQueue<Order*> Cancelled_Orders;
-    LinkedQueue<Order*> Finished_Orders;
+    // ===================== RESOURCES =====================
+    LinkedQueue<Chef*> availableChefs;
+    LinkedQueue<Scooter*> availableScooters;
+    LinkedQueue<Scooter*> maintenanceScooters;
+    LinkedQueue<Scooter*> returningScooters;
+    LinkedQueue<Table*> availableTables;
 
 public:
+    // ===================== CONSTRUCTOR =====================
     Restaurant();
 
+    // ===================== ACTIONS =====================
     void AddAction(Action* pAct);
     void AddOrder(Order* pOrd);
     bool RemoveOrder(int id);
     void ExecuteEvents(int currentTime);
+    void RandomSimulation(UI* ui);
+    // ===================== RANDOM ORDER =====================
 
-    LinkedQueue<Order*>& getNormalPending();
-    LinkedQueue<Order*>& getVeganPending();
-    priQueue<Order*>& getVIPPending();
+    void GenerateRandomOrder(int currentTime, int& lastID);
 
+    // ===================== SIMULATION =====================
+    void RunSimulation(UI* ui);
+
+    // ===================== GETTERS (FOR UI) =====================
+    int GetTimeStep() const;
+
+    LinkedQueue<Action*>& GetActions();
+
+    LinkedQueue<Order*>& GetPending();
+        LinkedQueue<Order*>& GetPendingVegan();
+        priQueue<Order*>& GetPendingVIP();
+        LinkedQueue<Order*>& GetPendingOT();
+        LinkedQueue<Order*>& GetPendingOVN();
+        LinkedQueue<Order*>& GetPendingOVC();
+    
+    LinkedQueue<Order*>& GetCooking();
+    LinkedQueue<Order*>& GetReady();
+    LinkedQueue<Order*>& GetInService();
+    LinkedQueue<Order*>& GetFinished();
+
+    LinkedQueue<Chef*>& GetAvailableChefs();
+
+    LinkedQueue<Scooter*>& GetAvailableScooters();
+    LinkedQueue<Scooter*>& GetMaintenanceScooters();
+    LinkedQueue<Scooter*>& GetReturningScooters();
+
+    LinkedQueue<Table*>& GetAvailableTables();
+
+    // ===================== DESTRUCTOR =====================
     ~Restaurant();
 };
-
-#endif

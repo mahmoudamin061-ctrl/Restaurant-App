@@ -143,12 +143,16 @@
     <ClInclude Include="Restaurant.h" />
     <ClInclude Include="Scooter.h" />
     <ClInclude Include="Table.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UI_Helpers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CancelAction.cpp" />
     <ClCompile Include="RequestAction.cpp" />
     <ClCompile Include="Restaurant.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UI_Helpers.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

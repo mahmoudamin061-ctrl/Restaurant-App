@@ -12,6 +12,11 @@ private:
 
 public:
     // الـ Constructor
+    Table() {
+        ID = 0;
+        capacity = 1;
+        status = EMPTY; // أو على حسب اسم الـ Enum عندكم
+    }
     Table(int id, int cap) : ID(id), capacity(cap), status(EMPTY) {}
 
     // دالة بترجع الـ ID
