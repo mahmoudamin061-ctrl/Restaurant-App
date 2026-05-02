@@ -10,11 +10,8 @@ protected:
 
 public:
     Action(int AT, Restaurant* pR) : ActionTime(AT), pRest(pR) {}
-
     int getActionTime() const { return ActionTime; }
-
     virtual void Execute() = 0;
-
     virtual ~Action() {}
 };
 

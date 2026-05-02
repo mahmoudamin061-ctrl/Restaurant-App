@@ -2,8 +2,7 @@
 #include "Restaurant.h"
 
 RequestAction::RequestAction(int AT, Restaurant* pR, Order* order)
-    : Action(AT, pR), pOrder(order)
-{
+    : Action(AT, pR), pOrder(order) {
 }
 
 void RequestAction::Execute() {

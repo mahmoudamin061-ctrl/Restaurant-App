@@ -1,4 +1,3 @@
-// correct version
 #pragma once
 #ifndef UI_HELPERS_H
 #define UI_HELPERS_H
@@ -14,6 +13,7 @@ void PrintScooters(Restaurant* R);
 void PrintTables(Restaurant* R);
 void PrintInService(Restaurant* R);
 void PrintMaintenance(Restaurant* R);
+void PrintCancelled(Restaurant* R);
 void PrintFinished(Restaurant* R);
 
 #endif

@@ -7,7 +7,6 @@
 class RequestAction : public Action {
 private:
     Order* pOrder;
-
 public:
     RequestAction(int AT, Restaurant* pR, Order* order);
     virtual void Execute() override;

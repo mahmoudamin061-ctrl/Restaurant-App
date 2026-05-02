@@ -5,77 +5,57 @@ enum ORD_TYPE { ODG, ODN, OT, OVG, OVC, OVN };
 
 class Order {
 private:
-    int ID;
+    int      ID;
     ORD_TYPE type;
-
-    // Timing fields (Phase 2 core)
-    int TQ;   // Request time (when order arrived)
-    int TA;   // Assignment time (chef assigned)
-    int TR;   // Ready time (chef done)
-    int TS;   // Service start time (scooter/table assigned)
-    int TF;   // Finish time
-
-    // Order info
-    int size;
-    double price;
-
-    // OD-only fields
-    int seats;
-    int duration;
-    bool canShare;
-
-    // OV-only fields
-    int distance;
+    int TQ, TA, TR, TS, TF;
+    int      size;
+    double   price;
+    int      seats;
+    int      duration;
+    bool     canShare;
+    int      distance;
 
 public:
     Order(int id, ORD_TYPE t, int tq)
         : ID(id), type(t), TQ(tq),
         TA(0), TR(0), TS(0), TF(0),
         size(0), price(0.0),
-        seats(0), duration(0), canShare(false),
-        distance(0) {
+        seats(0), duration(0), canShare(false), distance(0) {
     }
 
-    // Getters
-    int getID()       const { return ID; }
-    ORD_TYPE getType()const { return type; }
-    int getTQ()       const { return TQ; }
-    int getTA()       const { return TA; }
-    int getTR()       const { return TR; }
-    int getTS()       const { return TS; }
-    int getTF()       const { return TF; }
-    int getSize()     const { return size; }
-    double getPrice() const { return price; }
-    int getSeats()    const { return seats; }
-    int getDuration() const { return duration; }
-    bool getCanShare()const { return canShare; }
-    int getDistance() const { return distance; }
+    int      getID()        const { return ID; }
+    ORD_TYPE getType()      const { return type; }
+    int      getTQ()        const { return TQ; }
+    int      getTA()        const { return TA; }
+    int      getTR()        const { return TR; }
+    int      getTS()        const { return TS; }
+    int      getTF()        const { return TF; }
+    int      getSize()      const { return size; }
+    double   getPrice()     const { return price; }
+    int      getSeats()     const { return seats; }
+    int      getDuration()  const { return duration; }
+    bool     getCanShare()  const { return canShare; }
+    int      getDistance()  const { return distance; }
 
-    // Setters (Person 3 will call these during simulation)
     void setSize(int s) { size = s; }
     void setPrice(double p) { price = p; }
     void setSeats(int s) { seats = s; }
     void setDuration(int d) { duration = d; }
-    void setCanShare(bool cs) { canShare = cs; }
+    void setCanShare(bool c) { canShare = c; }
     void setDistance(int d) { distance = d; }
     void setTA(int t) { TA = t; }
     void setTR(int t) { TR = t; }
     void setTS(int t) { TS = t; }
     void setTF(int t) { TF = t; }
 
-    // Computed metrics (Person 2 will use these for stats)
-    int getIdleTime()    const { return (TA - TQ) + (TS - TR); }
-    int getCookTime()    const { return TR - TA; }
-    int getWaitTime()    const { return getIdleTime() + getCookTime(); }
-    int getServiceTime() const { return TF - TS; }
+    int    getIdleTime()    const { return (TA - TQ) + (TS - TR); }
+    int    getCookTime()    const { return TR - TA; }
+    int    getWaitTime()    const { return getIdleTime() + getCookTime(); }
+    int    getServiceTime() const { return TF - TS; }
 
-    // Priority for OVG orders: higher price + size + distance = higher priority
+    // Weighted priority for OVG: higher = served first
     int getPriority() const {
         return (int)(price * 0.5) + (size * 10) + (distance / 100);
-    }
-
-    void print() const {
-        std::cout << "[" << ID << " " << getTYPEStr() << " TQ=" << TQ << "]";
     }
 
     std::string getTYPEStr() const {
@@ -88,6 +68,10 @@ public:
         case OVN: return "OVN";
         default:  return "???";
         }
+    }
+
+    void print() const {
+        std::cout << "[" << ID << " " << getTYPEStr() << " TQ=" << TQ << "]";
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Order* ord) {
