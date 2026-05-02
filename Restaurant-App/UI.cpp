@@ -43,7 +43,7 @@ void UI::Wait()
 
 void UI::PrintAll(Restaurant* R, int currentTimeStep)
 {
-    if (mode == 2) return;
+    
 
     if (mode == MODE_SILENT) return;
 
@@ -64,33 +64,17 @@ void UI::PrintAll(Restaurant* R, int currentTimeStep)
 }
 
 void UI::PrintOrderFormat(Order* pOrd)
+
 {
     if (!pOrd) return;
 
     switch (pOrd->getType()) {
-
-    case TYPE_NRM:
-        cout << "[" << pOrd->getID() << "] ";
-        break;
-    case TYPE_VGAN:
-        cout << "(" << pOrd->getID() << ") ";
-        break;
-    case TYPE_VIP:
-        cout << "{" << pOrd->getID() << "} ";
-        break;
-
-    case TYPE_OT:
-        cout << "<" << pOrd->getID() << "> ";
-        break;
-    case TYPE_OVN:
-        cout << "[[" << pOrd->getID() << "]] ";
-        break;
-    case TYPE_OVC:
-        cout << "{{" << pOrd->getID() << "}} ";
-        break;
-
-    default:
-        cout << pOrd->getID() << " ";
-        break;
+    case ODG: cout << "[ODG-" << pOrd->getID() << "] "; break;
+    case ODN: cout << "[ODN-" << pOrd->getID() << "] "; break;
+    case OT:  cout << "[OT-" << pOrd->getID() << "] "; break;
+    case OVG: cout << "[OVG-" << pOrd->getID() << "] "; break;
+    case OVC: cout << "[OVC-" << pOrd->getID() << "] "; break;
+    case OVN: cout << "[OVN-" << pOrd->getID() << "] "; break;
+    default:  cout << "[?-" << pOrd->getID() << "] "; break;
     }
 }

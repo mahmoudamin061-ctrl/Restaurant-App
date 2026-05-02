@@ -1,2 +1,9 @@
-﻿  Source.cpp
-  Restaurant-App.vcxproj -> C:\Users\محمود\source\repos\mahmoudamin061-ctrl\Restaurant-App\x64\Debug\Restaurant-App.exe
+﻿  CancelAction.cpp
+  RequestAction.cpp
+  Restaurant.cpp
+  Source.cpp
+C:\Omar\DS Project\Restaurant-App\Restaurant-App\Restaurant.cpp(98,25): error C2065: 'READY_OVC': undeclared identifier
+C:\Omar\DS Project\Restaurant-App\Restaurant-App\Restaurant.cpp(103,25): error C2065: 'COOKING_OVC': undeclared identifier
+  UI.cpp
+  UI_Helpers.cpp
+  Generating Code...
