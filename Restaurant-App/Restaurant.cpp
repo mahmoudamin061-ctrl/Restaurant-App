@@ -59,10 +59,17 @@ void Restaurant::AddAction(Action* pAct)
 //        AddOrder(newOrder);
 //    }
 //}
+void Restaurant::AddOrder(Order* pOrd) {
+    if (!pOrd) return;
 
-void Restaurant::AddOrder(Order* pOrd)
-{
-   // pOrd->getPriority()
+    switch (pOrd->getType()) {
+    case ODG: PEND_ODG.enqueue(pOrd);                         break;
+    case ODN: PEND_ODN.enqueue(pOrd);                         break;
+    case OT:  PEND_OT.enqueue(pOrd);                          break;
+    case OVG: PEND_OVG.enqueue(pOrd, pOrd->getPriority());    break;
+    case OVC: PEND_OVC.enqueue(pOrd);                         break;
+    case OVN: PEND_OVN.enqueue(pOrd);                         break;
+    }
 }
 
 void Restaurant::ExecuteEvents(int currentTime)
@@ -80,30 +87,23 @@ void Restaurant::ExecuteEvents(int currentTime)
         else break;
     }
 }
-
-bool Restaurant::RemoveOrder(int id)
-{
+bool Restaurant::RemoveOrder(int id) {
     Order* temp = nullptr;
-    LinkedQueue<Order*> helper;
-    bool found = false;
 
-    while (PEND_ODN.dequeue(temp))
-    {
-        if (temp->getID() == id && !found)
-        {
-            CANCELLED.enqueue(temp);
-            found = true;
-        }
-        else
-        {
-            helper.enqueue(temp);
-        }
-    }
+    // 1. Search pending OVC
+    if (CancelFromQueue(PEND_OVC, id, CANCELLED))
+        return true;
 
-    while (helper.dequeue(temp))
-        PEND_ODN.enqueue(temp);
+    // 2. Search ready OVC  (you'll need a READY_OVC list — see note below)
+    if (CancelFromQueue(READY_OVC, id, CANCELLED))
+        return true;
 
-    return found;
+    // 3. Search cooking — must also release the chef
+    // (Person 3 will handle the chef-release part once COOKING pairs chef+order)
+    if (CancelFromQueue(COOKING_OVC, id, CANCELLED))
+        return true;
+
+    return false; // order not found or not cancellable
 }
 //
 //void Restaurant::RunSimulation(UI* ui)
