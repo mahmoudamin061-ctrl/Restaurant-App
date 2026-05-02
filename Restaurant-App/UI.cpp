@@ -66,31 +66,5 @@ void UI::PrintAll(Restaurant* R, int currentTimeStep)
 void UI::PrintOrderFormat(Order* pOrd)
 {
     if (!pOrd) return;
-
-    switch (pOrd->getType()) {
-
-    case TYPE_NRM:
-        cout << "[" << pOrd->getID() << "] ";
-        break;
-    case TYPE_VGAN:
-        cout << "(" << pOrd->getID() << ") ";
-        break;
-    case TYPE_VIP:
-        cout << "{" << pOrd->getID() << "} ";
-        break;
-
-    case TYPE_OT:
-        cout << "<" << pOrd->getID() << "> ";
-        break;
-    case TYPE_OVN:
-        cout << "[[" << pOrd->getID() << "]] ";
-        break;
-    case TYPE_OVC:
-        cout << "{{" << pOrd->getID() << "}} ";
-        break;
-
-    default:
-        cout << pOrd->getID() << " ";
-        break;
-    }
+    cout << pOrd->getID() << "(" << pOrd->getTYPEStr() << ") ";
 }

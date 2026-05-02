@@ -63,13 +63,12 @@ void PrintReady(Restaurant* R)
 {
     cout << "------------- Ready Orders -----------------" << endl;
 
-    auto& ready = R->GetReady();
-
-    cout << ready.getCount() << " Orders: ";
-
-    ready.print();
-
-    cout << endl;
+    cout << "ODN: ";  R->GetReadyODN().print(); cout << endl;
+    cout << "ODG: ";  R->GetReadyODG().print(); cout << endl;
+    cout << "OT:  ";  R->GetReadyOT().print();  cout << endl;
+    cout << "OVN: ";  R->GetReadyOVN().print(); cout << endl;
+    cout << "OVC: ";  R->GetReadyOVC().print(); cout << endl;
+    cout << "OVG: ";  R->GetReadyOVG().print(); cout << endl;
 }
 
 void PrintScooters(Restaurant* R)
