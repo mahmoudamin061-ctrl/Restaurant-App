@@ -23,8 +23,8 @@ void PrintPending(Restaurant* R)
 {
     cout << "------------- Pending Orders -----------------" << endl;
 
-    cout << R->GetPendingVegan().getCount() << " ODG: ";
-    R->GetPendingVegan().print(); cout << endl;
+    cout << R->GetPendingODG().getCount() << " ODG: ";
+    R->GetPendingODG().print(); cout << endl;
 
     cout << R->GetPending().getCount() << " ODN: ";
     R->GetPending().print(); cout << endl;
@@ -32,8 +32,8 @@ void PrintPending(Restaurant* R)
     cout << R->GetPendingOT().getCount() << " OT:  ";
     R->GetPendingOT().print(); cout << endl;
 
-    cout << R->GetPendingVIP().getCount() << " OVG: ";
-    R->GetPendingVIP().print(); cout << endl;
+    cout << R->GetPendingOVG().getCount() << " OVG: ";
+    R->GetPendingOVG().print(); cout << endl;
 
     cout << R->GetPendingOVC().getCount() << " OVC: ";
     R->GetPendingOVC().print(); cout << endl;
