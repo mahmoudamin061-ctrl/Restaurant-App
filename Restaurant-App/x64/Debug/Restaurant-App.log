@@ -1,2 +1,10 @@
-﻿  Source.cpp
-  Restaurant-App.vcxproj -> C:\Users\محمود\source\repos\Team 29 Phase 1.2 (2)\Team 29 Phase 1.2\Restaurant-App\x64\Debug\Restaurant-App.exe
+﻿  CancelAction.cpp
+  RequestAction.cpp
+  Restaurant.cpp
+  Source.cpp
+  UI.cpp
+  UI_Helpers.cpp
+  Generating Code...
+  Restaurant-App.vcxproj -> D:\data project\x64\Debug\Restaurant-App.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
