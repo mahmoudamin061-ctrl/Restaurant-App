@@ -1,27 +1,36 @@
 #pragma once
 #include <iostream>
 
-enum TABLE_STATUS { EMPTY, OCCUPIED };
-
 class Table {
 private:
     int ID;
-    int capacity;          
-    TABLE_STATUS status;     
+    int capacity;
+    int freeSeats;
+    int busyUntil;
 
 public:
-  
-    Table() {
-        ID = 0;
-        capacity = 1;
-        status = EMPTY; 
-    }
-    Table(int id, int cap) : ID(id), capacity(cap), status(EMPTY) {}
+    Table() : ID(0), capacity(1), freeSeats(1), busyUntil(0) {}
+    Table(int id, int cap) : ID(id), capacity(cap), freeSeats(cap), busyUntil(0) {}
 
-    int getID() const { return ID; }
+    int getID()        const { return ID; }
+    int getCapacity()  const { return capacity; }
+    int getFreeSeats() const { return freeSeats; }
+    int getBusyUntil() const { return busyUntil; }
+
+    bool hasRoom(int seats) const { return freeSeats >= seats; }
+
+    void occupy(int seats, int duration, int currentTime) {
+        freeSeats -= seats;
+        busyUntil = currentTime + duration;
+    }
+
+    void freeTable() {
+        freeSeats = capacity;
+        busyUntil = 0;
+    }
 
     friend std::ostream& operator<<(std::ostream& os, const Table* t) {
-        if (t) os << t->ID;
+        if (t) os << "[T" << t->ID << ", " << t->capacity << ", " << t->freeSeats << "]";
         return os;
     }
 };

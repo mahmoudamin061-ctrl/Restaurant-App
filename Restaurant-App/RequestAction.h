@@ -6,12 +6,10 @@
 
 class RequestAction : public Action {
 private:
-    int ID;
-    ORD_TYPE type;
+    Order* pOrder;
 
 public:
-    RequestAction(int AT, Restaurant* pR, ORD_TYPE T, int id);
-
+    RequestAction(int AT, Restaurant* pR, Order* order);
     virtual void Execute() override;
 };
 
