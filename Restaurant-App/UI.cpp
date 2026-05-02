@@ -67,6 +67,7 @@ void UI::PrintOrderFormat(Order* pOrd)
 
 {
     if (!pOrd) return;
+<<<<<<< HEAD
 
     switch (pOrd->getType()) {
     case ODG: cout << "[ODG-" << pOrd->getID() << "] "; break;
@@ -78,3 +79,7 @@ void UI::PrintOrderFormat(Order* pOrd)
     default:  cout << "[?-" << pOrd->getID() << "] "; break;
     }
 }
+=======
+    cout << pOrd->getID() << "(" << pOrd->getTYPEStr() << ") ";
+}
+>>>>>>> 6d0a9c1b1a6cef2dae5ee644f45da7f06554e4c4

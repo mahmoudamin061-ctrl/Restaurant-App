@@ -26,19 +26,55 @@ bool CancelFromQueue(LinkedQueue<Order*>& q, int targetID, LinkedQueue<Order*>& 
     return found;
 }
 
+bool Restaurant::CancelFromCooking(int targetID) {
+    LinkedQueue<CookingEntry*> temp;
+    CookingEntry* entry;
+    bool found = false;
+
+    while (COOKING.dequeue(entry)) {
+        if (entry->order->getID() == targetID && !found) {
+            availableChefs.enqueue(entry->chef);  // release chef
+            CANCELLED.enqueue(entry->order);      // cancel order
+            delete entry;
+            found = true;
+        }
+        else {
+            temp.enqueue(entry);
+        }
+    }
+
+    while (temp.dequeue(entry))
+        COOKING.enqueue(entry);
+
+    return found;
+}
+
+bool Restaurant::RemoveOrder(int id) {
+    // Search pending OVC
+    if (CancelFromQueue(PEND_OVC, id, CANCELLED))
+        return true;
+
+    // Search ready OVC
+    if (CancelFromQueue(READY_OVC, id, CANCELLED))
+        return true;
+
+    // Search cooking — separate function handles CookingEntry + releases chef
+    if (CancelFromCooking(id))
+        return true;
+
+    return false;
+}
 
 Restaurant::Restaurant()
 {
     currentTimeStep = 0;
 }
 
-
 void Restaurant::AddAction(Action* pAct)
 {
     if (pAct)
         ACTIONS_LIST.enqueue(pAct);
 }
-
 
 //
 //void Restaurant::GenerateRandomOrder(int currentTime, int& lastID) {
@@ -59,6 +95,7 @@ void Restaurant::AddAction(Action* pAct)
 //        AddOrder(newOrder);
 //    }
 //}
+
 void Restaurant::AddOrder(Order* pOrd) {
     if (!pOrd) return;
 
@@ -87,24 +124,7 @@ void Restaurant::ExecuteEvents(int currentTime)
         else break;
     }
 }
-bool Restaurant::RemoveOrder(int id) {
-    Order* temp = nullptr;
 
-    // 1. Search pending OVC
-    if (CancelFromQueue(PEND_OVC, id, CANCELLED))
-        return true;
-
-    // 2. Search ready OVC  (you'll need a READY_OVC list — see note below)
-    if (CancelFromQueue(READY_OVC, id, CANCELLED))
-        return true;
-
-    // 3. Search cooking — must also release the chef
-    // (Person 3 will handle the chef-release part once COOKING pairs chef+order)
-    if (CancelFromQueue(COOKING_OVC, id, CANCELLED))
-        return true;
-
-    return false; // order not found or not cancellable
-}
 //
 //void Restaurant::RunSimulation(UI* ui)
 //{
@@ -152,17 +172,20 @@ LinkedQueue<Action*>& Restaurant::GetActions()
 {
     return ACTIONS_LIST;
 }
+
 LinkedQueue<Order*>& Restaurant::GetPending()
 {
     return PEND_ODN;
 }
 
-LinkedQueue<Order*>& Restaurant::GetPendingVegan()
+// renamed from GetPendingVegan to match new header
+LinkedQueue<Order*>& Restaurant::GetPendingODG()
 {
     return PEND_ODG;
 }
 
-priQueue<Order*>& Restaurant::GetPendingVIP()
+// renamed from GetPendingVIP to match new header
+priQueue<Order*>& Restaurant::GetPendingOVG()
 {
     return PEND_OVG;
 }
@@ -181,15 +204,20 @@ LinkedQueue<Order*>& Restaurant::GetPendingOVC()
 {
     return PEND_OVC;
 }
-LinkedQueue<Order*>& Restaurant::GetCooking()
+
+// returns CookingEntry* queue now (was Order*)
+LinkedQueue<CookingEntry*>& Restaurant::GetCooking()
 {
     return COOKING;
 }
 
-LinkedQueue<Order*>& Restaurant::GetReady()
-{
-    return READY;
-}
+// split into type-specific ready lists
+LinkedQueue<Order*>& Restaurant::GetReadyODN() { return READY_ODN; }
+LinkedQueue<Order*>& Restaurant::GetReadyODG() { return READY_ODG; }
+LinkedQueue<Order*>& Restaurant::GetReadyOT() { return READY_OT; }
+LinkedQueue<Order*>& Restaurant::GetReadyOVN() { return READY_OVN; }
+LinkedQueue<Order*>& Restaurant::GetReadyOVC() { return READY_OVC; }
+LinkedQueue<Order*>& Restaurant::GetReadyOVG() { return READY_OVG; }
 
 LinkedQueue<Order*>& Restaurant::GetInService()
 {
@@ -199,6 +227,11 @@ LinkedQueue<Order*>& Restaurant::GetInService()
 LinkedQueue<Order*>& Restaurant::GetFinished()
 {
     return FINISHED;
+}
+
+LinkedQueue<Order*>& Restaurant::GetCancelled()
+{
+    return CANCELLED;
 }
 
 LinkedQueue<Chef*>& Restaurant::GetAvailableChefs()
@@ -225,6 +258,7 @@ LinkedQueue<Table*>& Restaurant::GetAvailableTables()
 {
     return availableTables;
 }
+
 //
 //void Restaurant::RandomSimulation(UI* ui)
 //{
@@ -412,4 +446,5 @@ LinkedQueue<Table*>& Restaurant::GetAvailableTables()
 //        }
 //    }
 //}
+
 Restaurant::~Restaurant() {}

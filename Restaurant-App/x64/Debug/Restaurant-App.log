@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  CancelAction.cpp
   RequestAction.cpp
   Restaurant.cpp
@@ -7,3 +8,9 @@ C:\Omar\DS Project\Restaurant-App\Restaurant-App\Restaurant.cpp(103,25): error C
   UI.cpp
   UI_Helpers.cpp
   Generating Code...
+=======
+﻿  UI.cpp
+  UI_Helpers.cpp
+  Generating Code...
+  Restaurant-App.vcxproj -> C:\Users\محمود\source\repos\mahmoudamin061-ctrl\Restaurant-App\x64\Debug\Restaurant-App.exe
+>>>>>>> 6d0a9c1b1a6cef2dae5ee644f45da7f06554e4c4
