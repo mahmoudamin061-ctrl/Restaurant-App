@@ -1,0 +1,86 @@
+================================================================
+  CMPG104 Restaurant Project — Test Description
+================================================================
+
+FILE THAT TESTS THE MOST SCENARIOS: input6.txt
+  (300 actions, all order types, all assignment rules, cancellations,
+   scooter maintenance, table sharing, chef fallback, OVG priority)
+
+================================================================
+FILE-BY-FILE BREAKDOWN
+================================================================
+
+--- input1.txt  (50 actions) ---
+Scenarios tested:
+  - All 6 order types present: ODG, ODN, OT, OVC, OVG, OVN
+  - Basic chef assignment (CS to ODG/OVG, CN to others)
+  - Basic scooter assignment (FCFS for OV)
+  - Basic table assignment (OD orders)
+  - OT ready-wait 1-timestep before pickup
+  - 4 OVC cancellations (pending/ready states)
+  - Small resource pool so queues build and drain
+
+--- input2.txt  (100 actions) ---
+Scenarios tested:
+  - ODG -> CS only (queues if no CS available)
+  - ODN -> CN preferred, fallback to CS when CN exhausted
+  - OVN -> CN only (queues if no CN available)
+  - OVG priority queue ordering (weighted formula)
+  - Fewer chefs relative to orders: pending queues build up
+  - 10 OVC cancellations spread over time
+
+--- input3.txt  (150 actions) ---
+Scenarios tested:
+  - Heavy ODG and ODN load stresses table assignment
+  - Table sharing (CanShare=Y orders sit at the same table)
+  - Best-fit table selection (smallest fitting table chosen)
+  - Partial table availability after sharing assignment
+  - Table released when order duration expires
+  - 12 OVC cancellations
+
+--- input4_cancellation.txt  (200 actions)  [CANCELLATION FILE] ---
+  This file is specifically designed to illustrate cancellation.
+Scenarios tested:
+  - Cancel OVC while PENDING (never assigned to a chef)
+  - Cancel OVC while COOKING (chef is freed immediately)
+  - Cancel OVC while READY (waiting for scooter, just dropped)
+  - ~73 OVC orders with 66 cancel requests targeting them
+  - Some cancel IDs won't be found (order already delivered) —
+    the system silently ignores these, which is correct
+  - Mix of all other order types to ensure cancellation does not
+    break normal simulation flow
+
+--- input5.txt  (250 actions) ---
+Scenarios tested:
+  - TH = 5 (very short threshold) => OVG orders frequently overwait
+  - Only 3 scooters => ready OVG orders wait long enough to overwait
+  - Heavy OVG load triggers overwait list
+  - Overwait orders prioritised over normal OV orders
+  - Overwait ordering: higher (currentTime - TQ) assigned first
+  - Scooter maintenance triggered (Main_Ords=4, busy delivery mix)
+  - 16 OVC cancellations to keep cancellation logic exercised
+
+--- input6.txt  (300 actions)  [MOST SCENARIOS] ---
+Scenarios tested:
+  - All 6 order types in realistic proportions
+  - Chef assignment with both CS and CN fallback paths
+  - OVG priority queue (price/size/distance weighting)
+  - Table best-fit + sharing
+  - OVC cancellation in all 3 cancellable states
+  - Scooter maintenance (Main_Ords=5, Main_Dur=8)
+  - returningScooters list: scooters returning before available
+  - maintenanceScooters list: scooters in repair
+  - OVC first before OVN/OVG in scooter assignment
+  - Scooter chosen by shortest cumulative distance rule
+  - 30 OVC cancellations mixed throughout
+  - Output file lines sorted descending by TF
+  - All output statistics including utilization %
+
+================================================================
+NOTES
+================================================================
+- All cancel (X) actions target OVC orders only (as required).
+- All actions within each file are sorted by timestep ascending.
+- All order IDs are unique within each file.
+- input4_cancellation.txt is the designated cancellation file.
+================================================================

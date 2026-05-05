@@ -1,12 +1,4 @@
-﻿  CancelAction.cpp
-  RequestAction.cpp
-  Restaurant.cpp
-D:\data project\Restaurant-App\Restaurant.cpp(393,25): warning C4101: 'pri': unreferenced local variable
-  Source.cpp
-  UI.cpp
+﻿  UI.cpp
   UI_Helpers.cpp
-D:\data project\Restaurant-App\UI_Helpers.cpp(19,13): warning C4101: 'arr': unreferenced local variable
   Generating Code...
-  Restaurant-App.vcxproj -> D:\data project\x64\Debug\Restaurant-App.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.
+  Restaurant-App.vcxproj -> C:\Users\محمود\Desktop\New folder (3)\x64\Debug\Restaurant-App.exe

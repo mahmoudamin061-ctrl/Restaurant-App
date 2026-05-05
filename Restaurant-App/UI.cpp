@@ -14,6 +14,8 @@ void UI::SelectMode() {
     mode = (choice == 1) ? MODE_INTR : MODE_SILENT;
     if (mode == MODE_SILENT)
         cout << "Simulation Starts in Silent mode ...\n";
+    else
+        cout << "Simulation Starts in Interactive mode ...\n";
 }
 
 int UI::GetMode() const { return mode; }
@@ -25,7 +27,7 @@ void UI::PrintHeader(int timestep) {
 }
 
 void UI::Wait() {
-    cout << "PRESS ANY KEY TO MOVE TO NEXT STEP!\n";
+    cout << "\nPRESS ANY KEY TO MOVE TO NEXT STEP!\n";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }
@@ -43,7 +45,7 @@ void UI::PrintAll(Restaurant* R, int currentTimeStep) {
     PrintTables(R);
     PrintInService(R);
     PrintMaintenance(R);
-    PrintCancelled(R);    // was missing
+    PrintCancelled(R);
     PrintFinished(R);
 
     Wait();
