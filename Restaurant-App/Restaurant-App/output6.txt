@@ -281,5 +281,5 @@
    Avg Tc    = 0.988889
    Avg Tw    = 1.46296
    Avg Tserv = 12.4519
-7) Scooter utilization: 123.363%
+7) Scooter utilization: 61.6817%
 8) Chef utilization:    3.8181%
