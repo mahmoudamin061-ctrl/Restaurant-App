@@ -70,13 +70,13 @@ void PrintCooking(Restaurant* R) {
 // ─────────────────────────────────────────────────────────────────────────────
 void PrintReady(Restaurant* R) {
     cout << "------------- Ready Orders -----------------\n";
-    cout << "ODG: ";            R->GetReadyODG().print();         cout << "\n";
-    cout << "ODN: ";            R->GetReadyODN().print();         cout << "\n";
-    cout << "OT:  ";            R->GetReadyOT().print();          cout << "\n";
-    cout << "OVG (overwait): "; R->GetReadyOVGOverwait().print(); cout << "\n";
-    cout << "OVG: ";            R->GetReadyOVG().print();         cout << "\n";
-    cout << "OVC: ";            R->GetReadyOVC().print();         cout << "\n";
-    cout << "OVN: ";            R->GetReadyOVN().print();         cout << "\n\n";
+    cout << R->GetReadyODG().getCount() << " ODG: ";            R->GetReadyODG().print();         cout << "\n";
+    cout << R->GetReadyODN().getCount() << " ODN: ";            R->GetReadyODN().print();         cout << "\n";
+    cout << R->GetReadyOT().getCount() << " OT:  ";            R->GetReadyOT().print();          cout << "\n";
+    cout << R->GetReadyOVGOverwait().getCount() << " OVG (overwait): "; R->GetReadyOVGOverwait().print(); cout << "\n";
+    cout << R->GetReadyOVG().getCount() << " OVG: ";            R->GetReadyOVG().print();         cout << "\n";
+    cout << R->GetReadyOVC().getCount() << " OVC: ";            R->GetReadyOVC().print();         cout << "\n";
+    cout << R->GetReadyOVN().getCount() << " OVN: ";            R->GetReadyOVN().print();         cout << "\n\n";
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

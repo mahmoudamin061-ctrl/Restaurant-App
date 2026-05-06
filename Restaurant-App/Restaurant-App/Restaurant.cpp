@@ -428,8 +428,7 @@ void Restaurant::FinishInServiceOrders() {
                 // FIX Bug 6: count distance AFTER delivery completes
                 // both outward and return trip count toward "busy" distance
                 entry->scooter->addDistance(ord->getDistance()); // to customer
-                entry->scooter->addDistance(ord->getDistance()); // back
-                entry->scooter->addBusyTime(travelTime);     // round trip
+\                entry->scooter->addBusyTime(travelTime);     // round trip
                 entry->scooter->recordDelivery();                // FIX Bug 6
 
                 returningScooters.enqueue(entry->scooter);
