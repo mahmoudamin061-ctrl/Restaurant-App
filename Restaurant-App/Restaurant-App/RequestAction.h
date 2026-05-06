@@ -14,7 +14,6 @@ public:
 
     virtual void Execute() override;
 
-    // FIX: prints [ODG, 7, 1] as required by spec
     virtual void print() const override {
         if (pOrder)
             std::cout << "[" << pOrder->getTYPEStr()

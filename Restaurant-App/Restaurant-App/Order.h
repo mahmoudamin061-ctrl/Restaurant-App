@@ -8,7 +8,7 @@ class Order {
 private:
     int      ID;
     ORD_TYPE type;
-    int      TQ, TA, TR, TS, TF;   // all initialized to 0 in constructor
+    int      TQ, TA, TR, TS, TF;   
     int      size;
     double   price;
     int      seats;
@@ -17,7 +17,6 @@ private:
     int      distance;
 
 public:
-    // FIX: all timestamps explicitly initialized to 0 (prevents garbage values)
     Order(int id, ORD_TYPE t, int tq)
         : ID(id), type(t),
           TQ(tq), TA(0), TR(0), TS(0), TF(0),
@@ -25,7 +24,6 @@ public:
           seats(0), duration(0), canShare(false), distance(0)
     {}
 
-    // ── Getters ─────────────────────────────────────────────────────────────
     int      getID()       const { return ID; }
     ORD_TYPE getType()     const { return type; }
     int      getTQ()       const { return TQ; }
@@ -40,7 +38,6 @@ public:
     bool     getCanShare() const { return canShare; }
     int      getDistance() const { return distance; }
 
-    // ── Setters ─────────────────────────────────────────────────────────────
     void setSize(int s)     { size = s; }
     void setPrice(double p) { price = p; }
     void setSeats(int s)    { seats = s; }
@@ -52,20 +49,16 @@ public:
     void setTS(int t)       { TS = t; }
     void setTF(int t)       { TF = t; }
 
-    // ── Derived metrics (used in output file) ───────────────────────────────
     int getIdleTime()    const { return (TA - TQ) + (TS - TR); }
     int getCookTime()    const { return TR - TA; }
     int getWaitTime()    const { return getIdleTime() + getCookTime(); }
     int getServiceTime() const { return TF - TS; }
 
-    // ── OVG weighted priority: higher value = higher priority ───────────────
-    // Formula: price contributes 50%, size 30%, distance 20%
-    // Scaled so that typical values give distinguishable integers
+   
     int getPriority() const {
         return (int)(price * 0.5) + (size * 10) + (distance / 100);
     }
 
-    // ── Helpers ─────────────────────────────────────────────────────────────
     std::string getTYPEStr() const {
         switch (type) {
         case ODG: return "ODG";

@@ -10,7 +10,7 @@ private:
     int       speed;
     bool      busy;
     int       assignedOrderID;
-    int       totalBusyTime;   // accumulated cook timesteps for utilization %
+    int       totalBusyTime;  
 
 public:
     Chef(int id, CHEF_TYPE t, int s)

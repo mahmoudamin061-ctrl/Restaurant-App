@@ -13,7 +13,6 @@ public:
 
     virtual void Execute() override;
 
-    // FIX: prints (X, 15, 2) as required by spec
     virtual void print() const override {
         std::cout << "(X, " << ActionTime << ", " << orderID << ")";
     }
