@@ -1,0 +1,48 @@
+TEAM MEMBER: Mahmoud Yossef
+TASKS & FEATURES:
+
+- Load input into ACTIONS_LIST (Request Actions only)
+- Move from ACTIONS_LIST to all Pending lists (AddOrder)
+- Handle Cancellation Actions (RemoveOrderOVC, CancelFromCookingOVC)-                                                                                                                                                   Scooter.h: Maintenance logic, addBusyTime, addDistance.
+
+______________________________________________________________
+
+TEAM MEMBER: Abdelrahman Nagy
+TASKS & FEATURES:
+- Collect statistics, Print screen, Generate output file, Support silent mode.
+-  Prepare 6 non-trivial input files with their outputs.
+_______________
+
+TEAM MEMBER: Nourhan Karim
+TASKS & FEATURES:
+- Main Simulation Function (RunSimulation loop).
+-  Check Scooters lists (Maint_Scooters and Back_Scooters to Free_Scooters).
+-  Check finished Delivery orders.
+-  Check finished Dine-in orders.
+-Assign pending to a chef.
+-  Move from Cooking_Orders to Ready Orders.
+- Assign table (best-fit + sharing).
+-  Assign scooter (shortest cumulative distance).
+______________________________________________________________
+
+TEAM MEMBER: Omar Ehab
+TASKS & FEATURES:
+- Finalize takeaway orders.
+- Print screen / Support interactive mode (UI side).
+- Prepare 6 non-trivial input files with their outputs (UI verification + output file formatting).
+- Table.h: ReleaseSeats, occupy, best-fit support.
+______________________________________________________________
+
+BONUS FEATURES ASSIGNMENT:
+
+Nourhan Karim--->
+1. Order Overwait for Ready OVG 
+   - CheckOverwait(), READY_OVG_OVERWAIT priority queue, totalOverwaitCount, overwait % in SaveToFile().
+
+Mahmoud Yossef--->
+2. Rescue Scooter / Maintenance 
+   - NeedsMaintenance(), startMaintenance(), maintenanceDone(), finishMaintenance(), maintenanceScooters queue, returningScooters queue.
+
+Abdelrahmn Nagy & Omar ehab ------>
+3. COMBO Orders / Table Sharing 
+   - FindBestFitTable() share-first logic, InServiceEntry.seatsUsed, releaseSeats(int), partial table kept in availableTables.
