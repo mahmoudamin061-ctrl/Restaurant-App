@@ -22,7 +22,6 @@ Restaurant::Restaurant()
 {}
 
 Restaurant::~Restaurant() {}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // AddAction / AddOrder
 // ─────────────────────────────────────────────────────────────────────────────
@@ -325,6 +324,7 @@ void Restaurant::AssignDeliveryBatch() {
         se->seatsUsed = 0;
         INSERVICE_LIST.enqueue(se);
         return true;
+
     };
 
     // 1) Overwait OVG — highest priority (bonus)

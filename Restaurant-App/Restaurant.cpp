@@ -9,9 +9,7 @@
 
 using namespace std;
 
-// ─────────────────────────────────────────────────────────────────────────────
 // Constructor
-// ─────────────────────────────────────────────────────────────────────────────
 Restaurant::Restaurant()
     : currentTimeStep(0), TH(0),
       totalCNCount(0), totalCSCount(0),
@@ -23,9 +21,7 @@ Restaurant::Restaurant()
 
 Restaurant::~Restaurant() {}
 
-// ─────────────────────────────────────────────────────────────────────────────
 // AddAction / AddOrder
-// ─────────────────────────────────────────────────────────────────────────────
 void Restaurant::AddAction(Action* pAct) {
     if (pAct) ACTIONS_LIST.enqueue(pAct);
 }
@@ -42,9 +38,7 @@ void Restaurant::AddOrder(Order* pOrd) {
     }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 // Cancellation helpers
-// ─────────────────────────────────────────────────────────────────────────────
 static bool CancelFromQueue(LinkedQueue<Order*>& q, int id,
                              LinkedQueue<Order*>& cancelledList)
 {
@@ -89,10 +83,9 @@ bool Restaurant::RemoveOrderOVC(int id) {
     return false;   // not found in any cancellable state — silently ignore
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 // Chef retrieval
-// ─────────────────────────────────────────────────────────────────────────────
-Chef* Restaurant::GetFreeChef(CHEF_TYPE preferred, bool allowFallback) {
+
+    Chef* Restaurant::GetFreeChef(CHEF_TYPE preferred, bool allowFallback) {
     Chef* c = nullptr;
     LinkedQueue<Chef*>& primary  = (preferred == CN) ? availableCN : availableCS;
     LinkedQueue<Chef*>& fallback = (preferred == CN) ? availableCS : availableCN;
@@ -119,9 +112,9 @@ void Restaurant::AssignChefToOrder(Order* ord, Chef* chef) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Stage 1 — assign pending orders to chefs in spec priority order:
 //   1) ODG  → CS only
-//   2) ODN  → CN preferred, CS fallback
-//   3) OT   → CN only
-//   4) OVG  → CS only  (priority queue, not FCFS)
+//   2) ODN  -> CN preferred, CS fallback
+//   3) OT   -> CN only
+//   4) OVG  -> CS only  (priority queue, not FCFS)
 //   5) OVC  → CN preferred, CS fallback
 //   6) OVN  → CN only
 // ─────────────────────────────────────────────────────────────────────────────
@@ -184,6 +177,9 @@ void Restaurant::AdvanceCooking() {
 
         if (entry->remainingTime <= 0) {
             Order* ord = entry->order;
+
+
+
             Chef*  ch  = entry->chef;
             ord->setTR(currentTimeStep);
 
