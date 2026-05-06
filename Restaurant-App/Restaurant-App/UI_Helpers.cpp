@@ -5,10 +5,6 @@ using namespace std;
 #include "Restaurant.h"
 #include "Action.h"
 
-// ─────────────────────────────────────────────────────────────────────────────
-// FIX Bug 8: PrintActions now prints [ODG, 100, 333] and (X, 105, 79) format
-// Uses virtual print() on each Action subclass
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintActions(Restaurant* R) {
     auto& actions = R->GetActions();
     int total = actions.getCount();
@@ -16,7 +12,6 @@ void PrintActions(Restaurant* R) {
     cout << "=============== Actions List ===============\n";
     cout << total << " actions remaining: ";
 
-    // Drain queue to capture first 10, then restore
     LinkedQueue<Action*> tmp;
     Action* a;
     while (actions.dequeue(a)) tmp.enqueue(a);
@@ -28,11 +23,11 @@ void PrintActions(Restaurant* R) {
         if (grabbed < 10) first10[grabbed++] = a;
         tmp2.enqueue(a);
     }
-    while (tmp2.dequeue(a)) actions.enqueue(a);   // restore queue
+    while (tmp2.dequeue(a)) actions.enqueue(a); 
 
     cout << "[";
     for (int i = 0; i < grabbed; i++) {
-        first10[i]->print();                       // FIX Bug 8: virtual dispatch
+        first10[i]->print();                       
         if (i < grabbed - 1) cout << ", ";
     }
     cout << "]";
@@ -40,7 +35,6 @@ void PrintActions(Restaurant* R) {
     cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintPending(Restaurant* R) {
     cout << "------------- Pending Orders -----------------\n";
     cout << R->GetPendingODG().getCount() << " ODG: "; R->GetPendingODG().print(); cout << "\n";
@@ -51,14 +45,12 @@ void PrintPending(Restaurant* R) {
     cout << R->GetPendingOVN().getCount() << " OVN: "; R->GetPendingOVN().print(); cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintAvailableChefs(Restaurant* R) {
     cout << "------------- Available Chefs -----------------\n";
     cout << R->GetAvailableCS().getCount() << " CS: "; R->GetAvailableCS().print(); cout << "\n";
     cout << R->GetAvailableCN().getCount() << " CN: "; R->GetAvailableCN().print(); cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintCooking(Restaurant* R) {
     auto& cooking = R->GetCooking();
     cout << "------------- Cooking Orders [OrderID, ChefID] -----------------\n";
@@ -67,7 +59,6 @@ void PrintCooking(Restaurant* R) {
     cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintReady(Restaurant* R) {
     cout << "------------- Ready Orders -----------------\n";
     cout << R->GetReadyODG().getCount() << " ODG: ";            R->GetReadyODG().print();         cout << "\n";
@@ -79,7 +70,6 @@ void PrintReady(Restaurant* R) {
     cout << R->GetReadyOVN().getCount() << " OVN: ";            R->GetReadyOVN().print();         cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintScooters(Restaurant* R) {
     cout << "------------- Available Scooters -----------------\n";
     cout << R->GetAvailableScooters().getCount() << " Scooters: ";
@@ -87,7 +77,6 @@ void PrintScooters(Restaurant* R) {
     cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintTables(Restaurant* R) {
     auto& tables = R->GetAvailableTables();
     cout << "------------- Available Tables [ID, cap, free] -----------------\n";
@@ -96,7 +85,6 @@ void PrintTables(Restaurant* R) {
     cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintInService(Restaurant* R) {
     auto& inService = R->GetInService();
     cout << "------------- In-Service Orders [OrderID, S/T ID] -----------------\n";
@@ -105,7 +93,6 @@ void PrintInService(Restaurant* R) {
     cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintMaintenance(Restaurant* R) {
     cout << "------------- In-Maintenance Scooters -----------------\n";
     cout << R->GetMaintenanceScooters().getCount() << " scooters: ";
@@ -116,7 +103,6 @@ void PrintMaintenance(Restaurant* R) {
     R->GetReturningScooters().print(); cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintCancelled(Restaurant* R) {
     auto& cancelled = R->GetCancelled();
     cout << "------------- Cancelled Orders -----------------\n";
@@ -125,7 +111,6 @@ void PrintCancelled(Restaurant* R) {
     cout << "\n\n";
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 void PrintFinished(Restaurant* R) {
     auto& finished = R->GetFinished();
     cout << "------------- Finished Orders (desc TF) -----------------\n";

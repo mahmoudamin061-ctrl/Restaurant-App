@@ -16,7 +16,6 @@ public:
 
     virtual void Execute() = 0;
 
-    // FIX: virtual print() so PrintActions() can show [Type, TQ, ID] format
     virtual void print() const = 0;
 
     virtual ~Action() {}

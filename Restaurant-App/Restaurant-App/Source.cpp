@@ -12,7 +12,7 @@ int main() {
     cout << "Enter input file name:  "; cin >> inputFile;
     cout << "Enter output file name: "; cin >> outputFile;
 
-    // Validate input file exists
+   
     {
         ifstream test(inputFile);
         if (!test.is_open()) {

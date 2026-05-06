@@ -28,7 +28,7 @@ public:
     int  getTotalBusyTime() const { return totalBusyTime; }
     int  getMainFinishTime()const { return mainFinishTime; }
 
-    // Called when a delivery COMPLETES (not when assigned)
+   
     void addDistance(int d)     { totalDistance += d; }
     void addBusyTime(int t)     { totalBusyTime += t; }
     void recordDelivery()       { ordersDelivered++; }
@@ -38,7 +38,7 @@ public:
     }
 
     void startMaintenance(int currentTime) {
-        ordersDelivered = 0;                       // reset counter
+        ordersDelivered = 0;                       
         mainFinishTime  = currentTime + mainDuration;
     }
 
