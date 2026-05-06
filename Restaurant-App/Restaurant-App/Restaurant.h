@@ -51,43 +51,65 @@ private:
     LinkedQueue<Action*>          ACTIONS_LIST;
 
     LinkedQueue<Order*>           PEND_ODG;
+
+
     LinkedQueue<Order*>           PEND_ODN;
-    LinkedQueue<Order*>           PEND_OT;
+    LinkedQueue<Order*>     
+        PEND_OT;
     priQueue<Order*>              PEND_OVG;    
-    LinkedQueue<Order*>           PEND_OVC;
+    LinkedQueue<Order*>   
+        PEND_OVC;
+
     LinkedQueue<Order*>           PEND_OVN;
+
+
 
     LinkedQueue<CookingEntry*>    COOKING;
 
+    LinkedQueue<Order*>        READY_OVG;
+
     LinkedQueue<Order*>           READY_ODG;
-    LinkedQueue<Order*>           READY_ODN;
-    LinkedQueue<Order*>           READY_OT;
-    priQueue<Order*>              READY_OVG_OVERWAIT;  
+    LinkedQueue<Order*>          READY_ODN;
+    LinkedQueue<Order*>        READY_OT;
+
+    priQueue<Order*>           READY_OVG_OVERWAIT;  
     LinkedQueue<Order*>           READY_OVC;
-    LinkedQueue<Order*>           READY_OVN;
+    LinkedQueue<Order*>          READY_OVN; 
 
     LinkedQueue<InServiceEntry*>  INSERVICE_LIST;
     LinkedQueue<Order*>           FINISHED;
+
     LinkedQueue<Order*>           CANCELLED;
 
     LinkedQueue<Chef*>            availableCN;
-    LinkedQueue<Chef*>            availableCS;
-    LinkedQueue<Scooter*>         availableScooters;
+    LinkedQueue<Chef*>          
+        availableCS;
+    LinkedQueue<Scooter*>   
+        availableScooters;
     LinkedQueue<Scooter*>         maintenanceScooters;
-    LinkedQueue<Scooter*>         returningScooters;
+    LinkedQueue<Scooter*>       
+        returningScooters;
     LinkedQueue<Table*>           availableTables;
 
-    bool     CancelFromCookingOVC(int id);
+    bool    
+        CancelFromCookingOVC(int id);
     Chef*    GetFreeChef(CHEF_TYPE preferred, bool allowFallback);
     void     AssignChefToOrder(Order* ord, Chef* chef);
     void     AssignPendingToChefs();
     void     AdvanceCooking();
+    //void RandomSimulation(UI* ui);
+
+   //void GenerateRandomOrder(int currentTime, int& lastID);
     void     CheckOverwait();
     void     AssignReadyOrders();
     void     AssignDineInOrders(LinkedQueue<Order*>& readyList);
-    void     AssignDeliveryBatch();
+    void
+        AssignDeliveryBatch();
     void     FinishInServiceOrders();
+
     bool     IsSimulationDone() const;
+
+
     Table*   FindBestFitTable(int seats, bool sharingOk);
     Scooter* FindShortestDistanceScooter();
 
@@ -95,37 +117,53 @@ public:
     Restaurant();
     ~Restaurant();
 
+
+
+
+
     void AddAction(Action* pAct);
     void AddOrder(Order* pOrd);
+
     bool RemoveOrderOVC(int id);
     void ExecuteEvents(int currentTime);
     void RunSimulation(UI* ui);
-    void LoadFromFile(const std::string& filename);
+
+    void
+        LoadFromFile(const std::string& filename);
     void SaveToFile(const std::string& filename);
+
     int  GetTimeStep() const;
 
-    LinkedQueue<Action*>&         GetActions();
+    LinkedQueue<Action*>&     
+        GetActions();
     LinkedQueue<Order*>&          GetPendingODG();
-    LinkedQueue<Order*>&          GetPendingODN();
+    LinkedQueue<Order*>& GetPendingODN();
     LinkedQueue<Order*>&          GetPendingOT();
-    priQueue<Order*>&             GetPendingOVG();
+    priQueue<Order*>&         
+        GetPendingOVG();
     LinkedQueue<Order*>&          GetPendingOVC();
-    LinkedQueue<Order*>&          GetPendingOVN();
-    LinkedQueue<CookingEntry*>&   GetCooking();
+    LinkedQueue<Order*>&           GetPendingOVN();
+    LinkedQueue<CookingEntry*>&
+        GetCooking();
     LinkedQueue<Order*>&          GetReadyODG();
-    LinkedQueue<Order*>&          GetReadyODN();
+    LinkedQueue<Order*>&     
+        GetReadyODN();
     LinkedQueue<Order*>&          GetReadyOT();
-    priQueue<Order*>&             GetReadyOVGOverwait();
-    LinkedQueue<Order*>&          GetReadyOVG();
-    LinkedQueue<Order*>&          GetReadyOVC();
+    priQueue<Order*>&          GetReadyOVGOverwait();
+    LinkedQueue<Order*>&        GetReadyOVG();
+    LinkedQueue<Order*>&       
+        GetReadyOVC();
     LinkedQueue<Order*>&          GetReadyOVN();
     LinkedQueue<InServiceEntry*>& GetInService();
     LinkedQueue<Order*>&          GetFinished();
-    LinkedQueue<Order*>&          GetCancelled();
-    LinkedQueue<Chef*>&           GetAvailableCN();
-    LinkedQueue<Chef*>&           GetAvailableCS();
+    LinkedQueue<Order*>&     
+        GetCancelled();
+    LinkedQueue<Chef*>&        GetAvailableCN();
+    LinkedQueue<Chef*>&        
+        
+        GetAvailableCS();
     LinkedQueue<Scooter*>&        GetAvailableScooters();
-    LinkedQueue<Scooter*>&        GetMaintenanceScooters();
+    LinkedQueue<Scooter*>&     GetMaintenanceScooters();
     LinkedQueue<Scooter*>&        GetReturningScooters();
     LinkedQueue<Table*>&          GetAvailableTables();
 };

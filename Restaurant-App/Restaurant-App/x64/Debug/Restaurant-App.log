@@ -1,0 +1,124 @@
+﻿  Restaurant.cpp
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(475,14): error C2079: 'fin' uses undefined class 'std::basic_ifstream<char,std::char_traits<char>>'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(478,43): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(479,43): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(480,43): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(481,44): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(482,32): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(486,41): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(492,9): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(504,16): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(507,30): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,17): error C2677: binary '>>': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(923,9):
+      could be '_Istr &&std::operator >>(_Istr &&,_Ty &&)'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          '_Istr &&std::operator >>(_Istr &&,_Ty &&)': could not deduce template argument for '__formal'
+              C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(922,102):
+              '<template-parameter>': you cannot create a pointer to a reference
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(910,31):
+      or       'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char &)'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char &)': could not deduce template argument for 'std::basic_istream<char,_Traits> &' from '<error type>'
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(904,31):
+      or       'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char &)'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char &)': could not deduce template argument for 'std::basic_istream<char,_Traits> &' from '<error type>'
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(881,32):
+      or       'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem &)'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from '<error type>'
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(858,31):
+      or       'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char (&)[_Size])'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char (&)[_Size])': could not deduce template argument for 'std::basic_istream<char,_Traits> &' from '<error type>'
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(852,31):
+      or       'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char (&)[_Size])'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char (&)[_Size])': could not deduce template argument for 'std::basic_istream<char,_Traits> &' from '<error type>'
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\istream(846,32):
+      or       'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem (&)[_Size])'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem (&)[_Size])': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from '<error type>'
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\xstring(3395,32):
+      or       'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from '<error type>'
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\cstddef(43,27):
+      or       'std::byte std::operator >>(const std::byte,const _IntType) noexcept'
+          C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(511,13):
+          'std::byte std::operator >>(const std::byte,const _IntType) noexcept': could not deduce template argument for '__formal'
+              C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.44.35207\include\cstddef(36,39):
+              'std::enable_if_t<false,int>' : Failed to specialize alias template
+  
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(527,42): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(533,35): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(539,45): warning C4552: '>>': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(734,14): error C2079: 'fout' uses undefined class 'std::basic_ofstream<char,std::char_traits<char>>'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(757,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(758,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(759,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(760,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(761,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(762,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(763,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(764,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(765,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(766,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(766,42): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(797,10): error C2297: '<<': not valid as right operand has type 'const char [35]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(797,10): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(799,10): error C2297: '<<': not valid as right operand has type 'const char [18]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(799,42): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(800,10): error C2297: '<<': not valid as right operand has type 'const char [9]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(800,36): error C2297: '<<': not valid as right operand has type 'const char [8]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(801,10): error C2297: '<<': not valid as right operand has type 'const char [7]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(801,35): error C2297: '<<': not valid as right operand has type 'const char [8]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(802,10): error C2297: '<<': not valid as right operand has type 'const char [8]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(802,35): error C2297: '<<': not valid as right operand has type 'const char [8]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(802,60): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(802,60): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(804,10): error C2297: '<<': not valid as right operand has type 'const char [17]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(805,10): error C2297: '<<': not valid as right operand has type 'const char [8]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(805,39): error C2297: '<<': not valid as right operand has type 'const char [7]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(805,67): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(805,67): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(807,10): error C2297: '<<': not valid as right operand has type 'const char [20]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(807,56): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(807,56): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(811,10): error C2297: '<<': not valid as right operand has type 'const char [14]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(811,41): error C2297: '<<': not valid as right operand has type 'const char [3]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(811,49): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(811,59): error C2297: '<<': not valid as right operand has type 'const char [3]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(812,10): error C2297: '<<': not valid as right operand has type 'const char [15]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(812,45): error C2297: '<<': not valid as right operand has type 'const char [3]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(812,53): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(812,66): error C2297: '<<': not valid as right operand has type 'const char [4]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(812,66): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(815,10): error C2297: '<<': not valid as right operand has type 'const char [21]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(816,10): error C2297: '<<': not valid as right operand has type 'const char [3]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(816,18): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(816,27): error C2297: '<<': not valid as right operand has type 'const char [16]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(816,27): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(819,14): error C2297: '<<': not valid as right operand has type 'const char [32]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(820,14): error C2297: '<<': not valid as right operand has type 'const char [16]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(820,35): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(820,58): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(821,14): error C2297: '<<': not valid as right operand has type 'const char [16]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(821,35): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(821,58): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(822,14): error C2297: '<<': not valid as right operand has type 'const char [16]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(822,35): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(822,58): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(823,14): error C2297: '<<': not valid as right operand has type 'const char [16]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(823,35): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(823,58): error C2297: '<<': not valid as right operand has type 'const char [2]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(823,58): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(828,10): error C2297: '<<': not valid as right operand has type 'const char [25]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(828,40): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(828,55): error C2297: '<<': not valid as right operand has type 'const char [3]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(828,55): warning C4552: '<<': result of expression not used
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(833,10): error C2297: '<<': not valid as right operand has type 'const char [25]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(833,40): error C2297: '<<': not valid as right operand has type 'double'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(833,52): error C2297: '<<': not valid as right operand has type 'const char [3]'
+C:\Users\محمود\Desktop\New folder (3)\Restaurant-App\Restaurant-App\Restaurant.cpp(833,52): warning C4552: '<<': result of expression not used

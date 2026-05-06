@@ -52,6 +52,7 @@ void UI::PrintAll(Restaurant* R, int currentTimeStep) {
 }
 
 void UI::PrintOrderFormat(Order* pOrd) {
+   
     if (!pOrd) return;
     cout << pOrd->getID() << "(" << pOrd->getTYPEStr() << ") ";
 }

@@ -37,7 +37,7 @@ public:
     }
 
     void freeTable() { freeSeats = capacity; busyUntil = 0; }
-
+	//leh frind operator? 3ashan a3raf a3ml print lel table b format mo3ayan
     friend std::ostream& operator<<(std::ostream& os, const Table* t) {
         if (t) os << "[T" << t->ID << ", " << t->capacity << ", " << t->freeSeats << "]";
         return os;
