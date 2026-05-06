@@ -283,9 +283,7 @@ void Restaurant::AssignDineInOrders(LinkedQueue<Order*>& readyList) {
     while (readyList.dequeue(ord)) {
         // Try sharing table first
         Table* best = FindBestFitTable(ord->getSeats(), ord->getCanShare());
-        // If no shared table found and order can share, try a fresh table
-        if (!best && ord->getCanShare())
-            best = FindBestFitTable(ord->getSeats(), false);
+      
 
         if (best) {
             ord->setTS(currentTimeStep);
@@ -428,7 +426,7 @@ void Restaurant::FinishInServiceOrders() {
                 // FIX Bug 6: count distance AFTER delivery completes
                 // both outward and return trip count toward "busy" distance
                 entry->scooter->addDistance(ord->getDistance()); // to customer
-\                entry->scooter->addBusyTime(travelTime);     // round trip
+                entry->scooter->addBusyTime(travelTime);     // round trip
                 entry->scooter->recordDelivery();                // FIX Bug 6
 
                 returningScooters.enqueue(entry->scooter);
